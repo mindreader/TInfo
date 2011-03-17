@@ -12,6 +12,8 @@ import Data.Maybe (catMaybes, listToMaybe)
 import Text.Printf.Mauke
 
 import System.Console.CmdArgs
+import System.Exit
+import System.IO as IO
 
 import BEDecode
 import BEParser
@@ -30,6 +32,9 @@ options = Opt {
 
 main = do
   Opt color files <- cmdArgs options
+  if P.null files
+    then IO.hPutStrLn stderr "tinfo: Filename required." >> exitFailure
+    else return ()
   mapM_ actOnFile files
   where
     actOnFile file = do
@@ -43,15 +48,15 @@ printSummary filename bd = do
   let ann      = (fromBDataList . getMainAnnounce) bd
       annlist  = (fromBDataList . getAnnounceList) bd
       filelist = (fromBDataList . getFileList) bd :: [B.ByteString]
-      date     = (maybe (0 :: Integer) id . fromBData . headDataList . getCreateDate) bd
-      comment  = (maybe ("" :: B.ByteString) id . fromBData . headDataList . getComment) bd
+      date     = (maybe (0 :: Integer) id . fromBData . headBDataList . getCreateDate) bd
+      comment  = (maybe ("" :: B.ByteString) id . fromBData . headBDataList . getComment) bd
       numfiles = P.length filelist
       filesize = (sum . fromBDataList . getFileSize) bd :: Integer
-      sum      = L.foldl1' (+)
+      sum      = L.foldl1' (+) --Why isn't there a strict sum function?
 
       fromBDataList :: forall a. (FromBData a) => [BData] -> [a]
       fromBDataList = catMaybes . P.map fromBData
-      headDataList = maybe (BString "") id . listToMaybe
+      headBDataList = maybe (BString "") id . listToMaybe
 
   printf "%s\n" (takeFileName filename)
   printf "  Name:     %s\n" comment
