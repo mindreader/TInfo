@@ -1,0 +1,5 @@
+Parses bencoded torrent files, does a pretty good job parsing a variety weird formats.  If something doesn't work, let me know.
+
+I was originally going to add color output, but I have decided I don't care enough to do so.
+
+To install, clone it, then: cabal configure && cabal install.  It should pull in all prereqs.  Executable is tinfo.

@@ -13,7 +13,12 @@ Version:             0.1
 Synopsis:            Show metadata from a torrent file
 
 -- A longer description of the package.
--- Description:         
+Description:         Simple terminal program to display info about a torrent file.
+                     What I'm using it for: lookup lesspipe.sh for gentoo,
+                     set the LESSOPEN environment variable to '|lesspipe.sh %s',
+                     and set tinfo in place of the default torrentinfo program
+                     and when you less a torrent file you will get a readable
+                     version of it.
 
 -- The license under which the package is released.
 License:             BSD3
@@ -49,7 +54,7 @@ Executable tinfo
   
   -- Packages needed in order to build this package.
   Build-depends:
-    cmdargs >= 0.5, bytestring, time, old-locale, containers, base >= 4, utf8-string, attoparsec, printf-mauke, terminfo, filepath
+    cmdargs >= 0.5, bytestring, time, old-locale, containers, base >= 4 && <= 6, utf8-string, attoparsec, printf-mauke, terminfo, filepath
   
   -- Modules not exported by this package.
   -- Other-modules:       
