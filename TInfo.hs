@@ -59,7 +59,7 @@ printSummary filename bd = do
       headBDataList = maybe (BString "") id . listToMaybe
 
   printf "%s\n" (takeFileName filename)
-  printf "  Name:     %s\n" comment
+  printf "  Comment:     %s\n" comment
   printf "  Date:     %s\n" =<< formatDateTime (fromIntegral date)
   printf "  Trackers: %s\n" (B.intercalate ", " (L.union ann annlist))
   printf "  Size:     %s\n" (formatSize filesize)
