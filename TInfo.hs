@@ -9,6 +9,8 @@ import Data.ByteString.Lazy as BL
 import Data.List as L (union, foldl1')
 import Data.Maybe (catMaybes, listToMaybe)
 
+import Control.Monad (when)
+
 import Text.Printf.Mauke
 
 import System.Console.CmdArgs
@@ -32,9 +34,7 @@ options = Opt {
 
 main = do
   Opt color files <- cmdArgs options
-  if P.null files
-    then IO.hPutStrLn stderr "tinfo: Filename required." >> exitFailure
-    else return ()
+  when (P.null files) $ IO.hPutStrLn stderr "tinfo: Filename required." >> exitFailure
   mapM_ actOnFile files
   where
     actOnFile file = do

@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, TypeSynonymInstances #-}
+{-# LANGUAGE OverloadedStrings, TypeSynonymInstances, FlexibleInstances #-}
 
 module BEDecode (
   beDecode,
@@ -63,7 +63,7 @@ bParser = bParseAssoc <|> bParseList <|> bParseString <|> bParseInt
 
 bParseAssoc = do
   char 'd'
-  xs <- many element
+  xs <- many' element
   char 'e'
   return $ BAssoc (fromList xs)
   where
@@ -76,7 +76,7 @@ bParseAssoc = do
 bParseList :: Parser BData
 bParseList = do
   char 'l'
-  res <- many bParser
+  res <- many' bParser
   char 'e'
   return $ BList res
 

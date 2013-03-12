@@ -7,7 +7,7 @@ Name:                tinfo
 -- The package version. See the Haskell package versioning policy
 -- (http://www.haskell.org/haskellwiki/Package_versioning_policy) for
 -- standards guiding when and how versions should be incremented.
-Version:             0.1
+Version:             0.2
 
 -- A short (one-line) description of the package.
 Synopsis:            Show metadata from a torrent file
@@ -54,7 +54,7 @@ Executable tinfo
   
   -- Packages needed in order to build this package.
   Build-depends:
-    cmdargs >= 0.5, bytestring, time, old-locale, containers, base >= 4 && <= 6, utf8-string, attoparsec, printf-mauke, terminfo, filepath
+    cmdargs >= 0.5, bytestring, time, old-locale, containers, base >= 4 && <= 6, utf8-string, attoparsec >= 0.10.3.0, printf-mauke, terminfo, filepath
   
   -- Modules not exported by this package.
   -- Other-modules:       
