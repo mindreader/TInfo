@@ -14,11 +14,6 @@ Synopsis:            Show metadata from a torrent file
 
 -- A longer description of the package.
 Description:         Simple terminal program to display info about a torrent file.
-                     What I'm using it for: lookup lesspipe.sh for gentoo,
-                     set the LESSOPEN environment variable to '|lesspipe.sh %s',
-                     and set tinfo in place of the default torrentinfo program
-                     and when you less a torrent file you will get a readable
-                     version of it.
 
 -- The license under which the package is released.
 License:             BSD3
@@ -45,7 +40,7 @@ Build-type:          Simple
 -- Extra-source-files:  
 
 -- Constraint on the version of Cabal needed to build this package.
-Cabal-version:       >=1.2
+Cabal-version:       >=1.6
 
 
 Executable tinfo
@@ -61,3 +56,7 @@ Executable tinfo
   
   -- Extra tools (e.g. alex, hsc2hs, ...) needed to build the source.
   -- Build-tools:         
+
+source-repository head
+  type:     git
+  location: https://github.com/mindreader/TInfo.git
